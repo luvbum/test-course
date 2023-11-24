@@ -37,7 +37,7 @@ void Report_As_Error(void) {
 }
 
 bool Is_Close_To_90_D(double a) {
-    if( abs(a - Pi*0.5) < Precision ) {
+    if( (a*Precision > Pi*0.5) && (a/Precision < Pi*0.5) ) {
         return true;
     }
     return false;
@@ -45,16 +45,19 @@ bool Is_Close_To_90_D(double a) {
 
 bool isRight(double a, double b, double c) {
     bool ReturnValue = false;
+    double angle_a = acos(( b*b + c*c - a*a )/(2*b*c));
+    double angle_b = acos(( a*a + c*c - b*b )/(2*a*c));
+    double angle_c = acos((( a*a + b*b - a*a )/(2*a*b)));
 
-    if( acos(( b*b + c*c - a*a )/(2*b*c) ) ) {
+    if( Is_Close_To_90_D(angle_a) ) {
         ReturnValue = true;
     }
 
-    if( acos(( a*a + c*c - b*b )/(2*a*c) ) ) {
+    if( Is_Close_To_90_D(angle_b) ) {
         ReturnValue = true;
     }
 
-    if( acos(( a*a + b*b - a*a )/(2*a*b) ) ) {
+    if( Is_Close_To_90_D(angle_c)) {
         ReturnValue = true;
     }
 
