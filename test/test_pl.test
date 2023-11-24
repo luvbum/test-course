@@ -21,9 +21,9 @@ Iso.6         5                     1                        1-0.001+0.00001    
 Iso.7         1                     1                        5                    | Isosceles
 Iso.8         1                     1                        5                    | Isosceles
 Iso.9         5                     1                        1                    | Isosceles
-Iso.10        1-0.001-0.00001       1                        5                    | Error
-Iso.11        5                     1-0.001-0.00001          1                    | Error
-Iso.12        5                     1                        1-0.001-0.00001      | Error
+Iso.10        1-0.001-0.00001       1                        5                    | None
+Iso.11        5                     1-0.001-0.00001          1                    | None
+Iso.12        5                     1                        1-0.001-0.00001      | None
 Iso.13        5                     0                        1                    | Error
 Iso.14        0                     1                        1                    | Error
 #

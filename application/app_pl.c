@@ -36,28 +36,31 @@ void Report_As_Error(void) {
     printf("Error ");
 }
 
-bool Is_Close_To_90_D(double a) {
-    if( (a*Precision > Pi*0.5) && (a/Precision < Pi*0.5) ) {
-        return true;
-    }
-    return false;
+bool Is_Close_To_90(const double V) {
+	
+	const double D = Precision+1.0;
+	
+	if ((V*D > Pi/2) && (V/D < Pi/2)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 bool isRight(double a, double b, double c) {
     bool ReturnValue = false;
     double angle_a = acos(( b*b + c*c - a*a )/(2*b*c));
     double angle_b = acos(( a*a + c*c - b*b )/(2*a*c));
-    double angle_c = acos((( a*a + b*b - a*a )/(2*a*b)));
-
-    if( Is_Close_To_90_D(angle_a) ) {
+    double angle_c = acos((( a*a + b*b - c*c )/(2*a*b)));
+    if( Is_Close_To_90(angle_a) ) {
         ReturnValue = true;
     }
 
-    if( Is_Close_To_90_D(angle_b) ) {
+    if( Is_Close_To_90(angle_b) ) {
         ReturnValue = true;
     }
 
-    if( Is_Close_To_90_D(angle_c)) {
+    if( Is_Close_To_90(angle_c)) {
         ReturnValue = true;
     }
 
@@ -93,13 +96,32 @@ bool isIsosceles(double a, double b, double c) {
 }
 
 bool isError(double a, double b, double c) {
-    if(a < Lower_Range-Precision || b < Lower_Range-Precision ||
-    c < Lower_Range-Precision || a > Upper_Range+Precision ||
-    b > Upper_Range+Precision || c > Upper_Range+Precision ||
-    a < 0 || b < 0 || c < 0) {
-        return true;
+    bool ReturnValue = false;
+    if( (a < Lower_Range-Precision || a < Lower_Range+Precision) ) {
+        ReturnValue = true;
     }
-return false;
+
+    if (a > Upper_Range+Precision || a > Upper_Range-Precision) {
+        ReturnValue = true;
+    }
+
+    if( (b < Lower_Range-Precision || b < Lower_Range+Precision) ) {
+        ReturnValue = true;
+    }
+
+    if(b > Upper_Range+Precision || b > Upper_Range-Precision) {
+        ReturnValue = true;
+    }
+
+    if( (c < Lower_Range-Precision || c < Lower_Range+Precision) ) {
+        ReturnValue = true;
+    }
+
+    if( c > Upper_Range+Precision || c > Upper_Range-Precision) {
+        ReturnValue = true;
+    }
+    
+return ReturnValue;
 }
 
 void Triangle(double A, double B, double C) {
